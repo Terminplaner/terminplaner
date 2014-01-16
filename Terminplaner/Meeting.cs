@@ -8,10 +8,9 @@ namespace Terminplaner
 {
     class Meeting : Termin
     {
-
         List<Teilnehmer> teilnehmerListe;
 
-        public String getDetails()
+       override public String getDetails()
         {
             StringBuilder s = new StringBuilder();
 
@@ -22,5 +21,14 @@ namespace Terminplaner
             }
             return s.ToString();
         }
+
+       public Meeting(int uid, String ort, DateTime start, DateTime end)
+       {
+           this.Type = (int)TypePool.Meeting;
+           this.Uid = uid;
+           this.Ort = ort;
+           this.StartDatum = start;
+           this.EndDatum = end;
+       }
     }
 }

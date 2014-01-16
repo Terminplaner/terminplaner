@@ -15,6 +15,7 @@ namespace Terminplaner
 
 
 
+
         public override string getDetails()
         {
 
@@ -29,5 +30,15 @@ namespace Terminplaner
             return s.ToString();
             
         }
+
+
+        public Schulung(int uid, String ort, DateTime start, DateTime end)
+       {
+           this.Type = (int)TypePool.Schulung;
+           this.Uid = uid;
+           this.Ort = ort;
+           this.StartDatum = start;
+           this.EndDatum = end;
+       }
     }
 }

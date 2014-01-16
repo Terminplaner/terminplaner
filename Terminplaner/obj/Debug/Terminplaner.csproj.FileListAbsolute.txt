@@ -1,1 +1,9 @@
 c:\users\pushit\documents\visual studio 2012\Projects\Terminplaner\Terminplaner\bin\Debug\Terminplaner.exe.config
+C:\Users\Itamiko\Documents\Visual Studio 2012\Projects\Terminplaner\Terminplaner\bin\Debug\Terminplaner.exe.config
+C:\Users\Itamiko\Documents\Visual Studio 2012\Projects\Terminplaner\Terminplaner\obj\Debug\Terminplaner.csprojResolveAssemblyReference.cache
+C:\Users\Itamiko\Documents\Visual Studio 2012\Projects\Terminplaner\Terminplaner\obj\Debug\Terminplaner.Properties.Resources.resources
+C:\Users\Itamiko\Documents\Visual Studio 2012\Projects\Terminplaner\Terminplaner\obj\Debug\Terminplaner.csproj.GenerateResource.Cache
+C:\Users\Itamiko\Documents\Visual Studio 2012\Projects\Terminplaner\Terminplaner\bin\Debug\Terminplaner.exe
+C:\Users\Itamiko\Documents\Visual Studio 2012\Projects\Terminplaner\Terminplaner\bin\Debug\Terminplaner.pdb
+C:\Users\Itamiko\Documents\Visual Studio 2012\Projects\Terminplaner\Terminplaner\obj\Debug\Terminplaner.exe
+C:\Users\Itamiko\Documents\Visual Studio 2012\Projects\Terminplaner\Terminplaner\obj\Debug\Terminplaner.pdb
