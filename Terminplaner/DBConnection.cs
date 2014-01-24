@@ -15,7 +15,7 @@ namespace Terminplaner
         MySqlConnection connection = new MySqlConnection();
         MySqlCommand query = new MySqlCommand();
 
-        public  DBConnection(string server, string database, string userid, string pw)
+        public DBConnection(string server, string database, string userid, string pw)
         {
             connection.ConnectionString = "server=" + server + ";database=" + database + ";userid=" + userid + ";password=" + pw;
         }
@@ -23,7 +23,9 @@ namespace Terminplaner
         public void Open()
         {
             if (connection.State != ConnectionState.Open)
-				connection.Open();
+                connection.Open();
+            if (connection.State == ConnectionState.Open)
+                Console.WriteLine("test");
         }
         public void Close()
         {

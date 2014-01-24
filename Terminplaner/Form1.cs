@@ -12,8 +12,11 @@ namespace Terminplaner
 {
     public partial class Form1 : Form
     {
+        Repository repo = new Repository();
+        
         public Form1()
         {
+            repo.getAllTermine();
             InitializeComponent();
         }
     }
