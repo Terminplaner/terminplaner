@@ -65,6 +65,12 @@
     <Compile Include="Schulung.cs" />
     <Compile Include="Teilnehmer.cs" />
     <Compile Include="Termin.cs" />
+    <Compile Include="TerminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TerminForm.Designer.cs">
+      <DependentUpon>TerminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Urlaub.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,6 +81,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TerminForm.resx">
+      <DependentUpon>TerminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
