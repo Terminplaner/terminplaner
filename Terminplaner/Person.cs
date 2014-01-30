@@ -6,30 +6,41 @@ using System.Threading.Tasks;
 
 namespace Terminplaner
 {
-    class Person
+    public class Person
     {
+        int uid;
+        string name, passwort;
 
-        int uID;
-        string name;
-        string vorname;
-
-
-
-
-        public String getDetails()
+        public int Uid
         {
-            
-            StringBuilder s = new StringBuilder();
-            s.Append(name)
-                .Append(Environment.NewLine)
-                .Append(vorname);
-
-            return s.ToString();
+            get { return uid; }
+            set { uid = value; }
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public string Passwort
+        {
+            get { return passwort; }
+            set { passwort = value; }
         }
 
-        public String getName()
+        public Person(int uid, string name, string passwort)
         {
-            return this.vorname + " " + name;
+            this.Uid = uid;
+            this.Name = name;
+            this.Passwort = passwort;
         }
+
+        public bool checkPasswort(string passwort)
+        {
+            bool ret = false;
+            if (passwort == this.Passwort)
+                ret = true;
+            return ret;
+        }
+
     }
 }

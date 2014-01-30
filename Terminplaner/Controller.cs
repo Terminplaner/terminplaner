@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,30 +9,65 @@ namespace Terminplaner
 {
     class Controller
     {
-        Repository model = new Repository();
+        private static Controller instance;
+        Repository repo = new Repository();
 
-        public List<Termin> getTerminList()
+        public static Controller Instance
         {
-            return model.getAllTermine();
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Controller();
+                }
+                return instance;
+            }
         }
 
-        public List<Urlaub> getUrlaub()
+        private Controller()
         {
-            return model.getUrlaubList();
+            this.Termine = new BindingList<Termin>();
+        }
+        
 
+        public void loadAllTermine(int puid)
+        {
+            var termine = repo.getAllTermine(puid);
+            bool notify = this.Termine.RaiseListChangedEvents;
+
+            try
+            {
+                this.Termine.RaiseListChangedEvents = false;
+
+                foreach (var termin in termine)
+                {
+                    this.Termine.Add(termin);
+                }
+            }
+            finally
+            {
+                this.Termine.RaiseListChangedEvents = notify;
+                this.Termine.ResetBindings();
+            }
         }
 
-        public List<Meeting> getMeetings()
+        public List<Termintyp> getTermintypes()
         {
-            return model.getMeetingList();
+            return repo.getAllTermintypes();
         }
 
-        public List<Schulung> getSchulungen()
+        public void erstelleTermin(Termin termin, Person person)
         {
-            return model.getSchulungList();
+            repo.erstelleTermin(termin, person);
+            this.Termine.Add(termin);
         }
 
+        public void openTerminErstellen(Hauptform mForm, Person user)
+        {
+            TerminForm newForm = new TerminForm(mForm, user);
+            newForm.Show();
+        }
 
-
+        public BindingList<Termin> Termine { get; private set; }
     }
 }

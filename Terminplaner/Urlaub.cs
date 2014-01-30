@@ -13,17 +13,15 @@ namespace Terminplaner
             throw new NotImplementedException();
         }
 
-
-
-
-
-        public Urlaub(int uid, String ort, DateTime start, DateTime end)
+        public Urlaub(int uid, String title, String ort, DateTime start, DateTime end, string tempTypeName)
        {
            this.Type = (int)TypePool.Urlaub;
            this.Uid = uid;
            this.Ort = ort;
+           this.Title = title;
            this.StartDatum = start;
            this.EndDatum = end;
+           this.TempTypeName = tempTypeName;
        }
     }
 }

@@ -18,27 +18,20 @@ namespace Terminplaner
 
         public override string getDetails()
         {
-
-            StringBuilder s = new StringBuilder();
-
-            s.Append(thema);
-            s.Append(schulungsleiter.getName());
-            if (fullDay)
-            {
-                s.Append("Schulung überdauert den ganzen Tag");
-            }
-            return s.ToString();
-            
+            return "WASD";
         }
 
 
-        public Schulung(int uid, String ort, DateTime start, DateTime end)
+        public Schulung(int uid, String title, String ort, DateTime start, DateTime end, string tempTypeName)
        {
            this.Type = (int)TypePool.Schulung;
+
            this.Uid = uid;
            this.Ort = ort;
+           this.Title = title;
            this.StartDatum = start;
            this.EndDatum = end;
+           this.TempTypeName = tempTypeName;
        }
     }
 }

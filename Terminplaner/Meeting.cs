@@ -22,13 +22,15 @@ namespace Terminplaner
             return s.ToString();
         }
 
-       public Meeting(int uid, String ort, DateTime start, DateTime end)
+       public Meeting(int uid, String title, String ort, DateTime start, DateTime end, string tempTypeName)
        {
            this.Type = (int)TypePool.Meeting;
+           this.Title = title;
            this.Uid = uid;
            this.Ort = ort;
            this.StartDatum = start;
            this.EndDatum = end;
+           this.TempTypeName = tempTypeName;
        }
     }
 }

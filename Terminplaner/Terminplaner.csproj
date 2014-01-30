@@ -48,15 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aufgabe.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="DBConnection.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Kalender.cs" />
+    <Compile Include="Termintyp.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="DBConnection.cs" />
+    <Compile Include="Hauptform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hauptform.Designer.cs">
+      <DependentUpon>Hauptform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Meeting.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Person.cs" />
@@ -65,7 +71,19 @@
     <Compile Include="Schulung.cs" />
     <Compile Include="Teilnehmer.cs" />
     <Compile Include="Termin.cs" />
+    <Compile Include="TerminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TerminForm.Designer.cs">
+      <DependentUpon>TerminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Urlaub.cs" />
+    <EmbeddedResource Include="Hauptform.resx">
+      <DependentUpon>Hauptform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +93,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TerminForm.resx">
+      <DependentUpon>TerminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\Termin.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

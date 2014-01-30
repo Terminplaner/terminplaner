@@ -24,8 +24,6 @@ namespace Terminplaner
         {
             if (connection.State != ConnectionState.Open)
                 connection.Open();
-            if (connection.State == ConnectionState.Open)
-                Console.WriteLine("test");
         }
         public void Close()
         {
@@ -40,5 +38,3 @@ namespace Terminplaner
         }
     }
 }
-
-

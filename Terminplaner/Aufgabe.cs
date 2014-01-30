@@ -20,5 +20,16 @@ namespace Terminplaner
 
             return s.ToString();
         }
+
+        public Aufgabe(int uid, String title, String ort, DateTime start, DateTime end, string tempTypeName)
+       {
+           this.Type = (int)TypePool.Aufgabe;
+           this.Title = title;
+           this.Uid = uid;
+           this.Ort = ort;
+           this.StartDatum = start;
+           this.EndDatum = end;
+           this.TempTypeName = tempTypeName;
+       }
     }
 }

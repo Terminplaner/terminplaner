@@ -13,129 +13,138 @@ namespace Terminplaner
     class Repository
     {
         DBConnection dbCon = new DBConnection("localhost", "test", "root", "");
-        
+        const int uid = 0,
+                  title = 1,
+                  ort = 2,
+                  start = 3,
+                  ende = 4,
+                  typ = 5,
+                  person = 6,
+                  beschreibung = 7,
+                  typString = 8;
 
-        public List<Termin> getAllTermine()
+        public List<Termin> getAllTermine(int puid)
         {
             List<Termin> terminList = new List<Termin>();
-
             dbCon.Open();
 
-            var reader = dbCon.Execute("select * from termine");
-            dbCon.Close();
+            var reader = dbCon.Execute("SELECT termin.*, (SELECT title from termintyp where uid = termin.typ) as typ FROM termin WHERE termin.person = " + puid + " ORDER BY termin.start");
+
             if (reader.HasRows)
             {
                 while (reader.Read())
                 {
-                    string model = ((Termin.TypePool)reader.GetInt32(0)).ToString();
-                    var tmp = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(model);
-
-                    switch (reader.GetInt32(0))
+                    switch ((int)reader.GetValue(typ))
                     {
                         case 1:
-                            terminList.Add(new Meeting(156, "ztfhjkm", new DateTime(), new DateTime()));
+                            terminList.Add(
+                                new Schulung(
+                                    (int)reader.GetValue(uid),
+                                    (string)reader.GetValue(title),
+                                    (string)reader.GetValue(ort),
+                                    (DateTime)reader.GetValue(start),
+                                    (DateTime)reader.GetValue(ende),
+                                    (string)reader.GetValue(typString)
+                                )
+                            );
                             break;
-
                         case 2:
-                            terminList.Add(new Schulung(156, "ztfhjkm", new DateTime(), new DateTime()));
+                            terminList.Add(
+                                new Meeting(
+                                    (int)reader.GetValue(uid),
+                                    (string)reader.GetValue(title),
+                                    (string)reader.GetValue(ort),
+                                    (DateTime)reader.GetValue(start),
+                                    (DateTime)reader.GetValue(ende),
+                                    (string)reader.GetValue(typString)
+                                 )
+                             );
                             break;
-
                         case 3:
-                            terminList.Add(new Urlaub(156, "ztfhjkm", new DateTime(), new DateTime()));
+                            terminList.Add(
+                                new Urlaub(
+                                    (int)reader.GetValue(uid),
+                                    (string)reader.GetValue(title),
+                                    (string)reader.GetValue(ort),
+                                    (DateTime)reader.GetValue(start),
+                                    (DateTime)reader.GetValue(ende),
+                                    (string)reader.GetValue(typString)
+                                )
+                            );
+                            break;
+                        case 4:
+                            terminList.Add(
+                                new Aufgabe(
+                                    (int)reader.GetValue(uid),
+                                    (string)reader.GetValue(title),
+                                    (string)reader.GetValue(ort),
+                                    (DateTime)reader.GetValue(start),
+                                    (DateTime)reader.GetValue(ende),
+                                    (string)reader.GetValue(typString)
+                                 )
+                             );
                             break;
                     }
                 }
             }
             else { return null; }
 
+            dbCon.Close();
             return terminList;
-
         }
 
-        public List<Urlaub> getUrlaubList()
+        public List<Termintyp> getAllTermintypes()
         {
-            List<Urlaub> urlaubList = new List<Urlaub>();
+            try
+            {
+                List<Termintyp> types = new List<Termintyp>();
+                dbCon.Open();
 
+                var reader = dbCon.Execute("SELECT Uid, Title FROM termintyp ORDER BY Title");
 
-            var reader = dbCon.Execute("select * from Urlaub");
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        types.Add(new Termintyp((int)reader.GetValue(uid), (string)reader.GetValue(title)));
+                    }
+                }
+                else { return null; }
+                return types;
+            }
+            finally
+            {
+                dbCon.Close();
+            }
+        }
+
+        public void erstelleTermin(Termin termin, Person person)
+        {
+            dbCon.Open();
+
+            if (termin.Title != "" && termin.Ort != "")
+                dbCon.Execute(
+                    "INSERT INTO  `test`.`termin` (`uid` ,`title` ,`ort` ,`start` ,`ende` ,`typ`,`person`)" +
+                    "VALUES" +
+                    "(NULL ,  '" + termin.Title + "',  '" + termin.Ort + "',  '" + termin.StartDatum.ToString("yyyy/MM/dd") + "',  '" + termin.EndDatum.ToString("yyyy/MM/dd") + "', '" + termin.Type + "', '" + person.Uid + "');");
+
             dbCon.Close();
+        }
+
+        public Person getPersonByName(string name)
+        {
+            dbCon.Open();
+            Person tempPerson = null;
+            MySqlDataReader reader = dbCon.Execute("SELECT * FROM person WHERE name='" + name + "'");
             if (reader.HasRows)
             {
                 while (reader.Read())
                 {
-                    string model = ((Termin.TypePool)reader.GetInt32(0)).ToString();
-                    var tmp = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(model);
-
-                    if (reader.GetInt32(0) == 3)
-                    {
-                        urlaubList.Add(new Urlaub(156, "ztfhjkm", new DateTime(), new DateTime()));
-                        break;
-                    }
+                    tempPerson = new Person((int)reader.GetValue(uid), (string)reader.GetValue(1), (string)reader.GetValue(2));
                 }
             }
-            else
-            {
-                return null;
-            }
-
-            return urlaubList;
-        }
-
-        public List<Meeting> getMeetingList()
-        {
-
-            List<Meeting> meetingList = new List<Meeting>();
-
-            var reader = dbCon.Execute("select * from meeting");
             dbCon.Close();
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    string model = ((Termin.TypePool)reader.GetInt32(0)).ToString();
-                    var tmp = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(model);
-
-                    if (reader.GetInt32(0) == 3)
-                    {
-                        meetingList.Add(new Meeting(156, "ztfhjkm", new DateTime(), new DateTime()));
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                return null;
-            }
-            return meetingList;
-        }
-
-        public List<Schulung> getSchulungList()
-        {
-            List<Schulung> schulungList = new List<Schulung>();
-
-            var reader = dbCon.Execute("select Schulungen from Termine");
-            dbCon.Close();
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    string model = ((Termin.TypePool)reader.GetInt32(0)).ToString();
-                    var tmp = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(model);
-
-                    if (reader.GetInt32(0) == 3)
-                    {
-                        schulungList.Add(new Schulung(156, "ztfhjkm", new DateTime(), new DateTime()));
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                return null;
-            }
-            return schulungList;
-
-
+            return tempPerson;
         }
     }
 }
