@@ -11,6 +11,7 @@ namespace Terminplaner
 {
     public partial class TerminForm : Form
     {
+<<<<<<< HEAD
         Controller c = Controller.Instance;
         Hauptform parent;
         Person user;
@@ -45,6 +46,16 @@ namespace Terminplaner
         {
             Close();
         }
+=======
+        public TerminForm()
+        {
+            InitializeComponent();
+        }
+
+     
+
+      
+>>>>>>> 1e2e46601e189be22929636b1ed697972d861f9f
 
     }
 }

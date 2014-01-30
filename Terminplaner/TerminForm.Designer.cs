@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             this.label7 = new System.Windows.Forms.Label();
             this.title_tb = new System.Windows.Forms.TextBox();
             this.start_dt = new System.Windows.Forms.DateTimePicker();
@@ -167,6 +168,15 @@
             this.Load += new System.EventHandler(this.TerminForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+=======
+            this.SuspendLayout();
+            // 
+            // TerminForm
+            // 
+            this.ClientSize = new System.Drawing.Size(611, 289);
+            this.Name = "TerminForm";
+            this.ResumeLayout(false);
+>>>>>>> 1e2e46601e189be22929636b1ed697972d861f9f
 
         }
 
@@ -186,6 +196,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+<<<<<<< HEAD
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox title_tb;
         private System.Windows.Forms.DateTimePicker start_dt;
@@ -198,5 +209,7 @@
         private System.Windows.Forms.Button exit;
         private System.Windows.Forms.ComboBox termintype;
         private System.Windows.Forms.Label label11;
+=======
+>>>>>>> 1e2e46601e189be22929636b1ed697972d861f9f
     }
 }
